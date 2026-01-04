@@ -9,7 +9,7 @@
  * - Invalid inputs for error testing
  */
 
-import type { EmailDetail, EmailSummary } from '../../src/index.js';
+import type { EmailDetail, EmailSummary } from '../../src/index.ts';
 
 // ============================================================================
 // EMAIL ADDRESSES - Various RFC 2822 formats
