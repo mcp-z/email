@@ -47,7 +47,6 @@
     "./package.json": "./package.json"
   },
   "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
   "files": [
     "dist",
@@ -67,19 +66,24 @@
     "version": "tsds version"
   },
   "dependencies": {
-    "node-html-parser": "^7.0.1",
-    "zod": "^4.3.4"
+    "node-html-parser": "^9.0.1",
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
-    "@types/node": "^25.0.3",
+    "@types/node": "^26.2.0",
     "node-version-use": "^2.4.7",
     "ts-dev-stack": "^1.22.1",
-    "tsds-config": "^1.0.4",
-    "typescript": "^5.9.3"
+    "tsds-config": "^1.0.4"
   },
   "engines": {
     "node": ">=14"
+  },
+  "allowScripts": {
+    "node-filename-to-dist-paths": true,
+    "node-semvers": true,
+    "node-version-use": true,
+    "thread-sleep-compat": true
   },
   "tsds": {
     "source": "src/index.ts"
