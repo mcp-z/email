@@ -60,9 +60,8 @@
     "lint": "biome check .",
     "prepublish:check": "ncp",
     "prepublishOnly": "tsds validate",
-    "test": "npm run test:unit",
-    "test:engines": "nvu engines tsds test:node --no-timeouts 'test/**/*.test.ts'",
-    "test:unit": "tsds test:node --no-timeouts 'test/unit/**/*.test.ts'",
+    "test": "tsds test:node --no-timeouts",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
     "version": "tsds version"
   },
   "dependencies": {
