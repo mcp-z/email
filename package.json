@@ -77,7 +77,7 @@
     "tsds-config": "^1.0.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16"
   },
   "allowScripts": {
     "node-filename-to-dist-paths": true,
