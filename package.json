@@ -1,6 +1,6 @@
 {
   "name": "@mcp-z/email",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Email processing toolkit with base schemas, normalization utilities, and shared constants for Gmail/Outlook integration",
   "keywords": [
     "email",
