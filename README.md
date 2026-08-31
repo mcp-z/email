@@ -1,7 +1,6 @@
 # @mcp-z/email
 
-Docs: https://mcp-z.github.io/email
-Provider-agnostic email utilities for parsing, normalization, and query schemas.
+Docs: https://mcp-z.github.io/email Provider-agnostic email utilities for parsing, normalization, and query schemas.
 
 ## Common uses
 
