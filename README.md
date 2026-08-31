@@ -1,6 +1,6 @@
 # @mcp-z/email
 
-Docs: https://mcp-z.github.io/email Provider-agnostic email utilities for parsing, normalization, and query schemas.
+Email processing toolkit with base schemas, normalization utilities, and shared constants for Gmail/Outlook integration
 
 ## Common uses
 
@@ -104,3 +104,7 @@ const content = buildContentForItems([{ id: '1', subject: 'Hello' }], 'emails');
 ## Requirements
 
 - Node.js >= 22
+
+### Documentation
+
+[API Docs](https://mcp-z.github.io/email)
