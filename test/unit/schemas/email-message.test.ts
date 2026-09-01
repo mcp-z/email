@@ -1,6 +1,5 @@
+import { createEmailRecipientsSchema, createMessageResultSchema, EMAIL_COMMON_PATTERNS, EMAIL_FIELD_DESCRIPTIONS, EMAIL_FIELDS, EmailDetailSchema, EmailSummarySchema } from '@mcp-z/email';
 import assert from 'assert';
-
-import { createEmailRecipientsSchema, createMessageResultSchema, EMAIL_COMMON_PATTERNS, EMAIL_FIELD_DESCRIPTIONS, EMAIL_FIELDS, EmailDetailSchema, EmailSummarySchema } from '../../../src/schemas/email-message.ts';
 import { LONG_EMAIL, MINIMAL_EMAIL_SUMMARY, SAMPLE_EMAIL_DETAIL, SAMPLE_EMAIL_SUMMARY, UNICODE_EMAIL } from '../../lib/test-data.ts';
 
 // ============================================================================

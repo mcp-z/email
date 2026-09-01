@@ -1,6 +1,5 @@
+import { type AddressToken, addressesToString, extractCurrentMessageFromHtml, extractCurrentMessageFromHtmlToText, extractCurrentMessageFromText, formatAddresses, normalizeDateToISO, parseAddresses, parseAddressToken, safeBase64UrlDecode, stripHtml } from '@mcp-z/email';
 import assert from 'assert';
-
-import { type AddressToken, addressesToString, extractCurrentMessageFromHtml, extractCurrentMessageFromHtmlToText, extractCurrentMessageFromText, formatAddresses, normalizeDateToISO, parseAddresses, parseAddressToken, safeBase64UrlDecode, stripHtml } from '../../../src/normalization/message-normalization.ts';
 import { BASE64URL_SAMPLES, EMAIL_THREADS, HTML_SAMPLES, REAL_EMAIL_HTML, SAMPLE_ADDRESS_ARRAYS, SAMPLE_ADDRESSES } from '../../lib/test-data.ts';
 
 describe('message-normalization', () => {
