@@ -1,3 +1,4 @@
+import '../lib/env-loader.ts';
 import { addressesToString, buildContentForItems, formatAddresses, normalizeDateToISO, stripHtml } from '@mcp-z/email';
 import assert from 'assert';
 

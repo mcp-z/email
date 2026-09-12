@@ -1,7 +1,7 @@
+import '../../lib/env-loader.ts';
+import { baseEmailQueryFields, FieldOperatorSchema } from '@mcp-z/email';
 import assert from 'assert';
-
 import { z } from 'zod';
-import { baseEmailQueryFields, FieldOperatorSchema } from '../../../src/schemas/email-query.ts';
 import { QUERY_SAMPLES } from '../../lib/test-data.ts';
 
 describe('email-query', () => {

@@ -1,6 +1,6 @@
+import '../../lib/env-loader.ts';
+import { buildContentForItems } from '@mcp-z/email';
 import assert from 'assert';
-
-import { buildContentForItems } from '../../../src/lib/email-formatting.ts';
 import { LONG_EMAIL, MINIMAL_EMAIL_SUMMARY, SAMPLE_EMAIL_SUMMARY, UNICODE_EMAIL } from '../../lib/test-data.ts';
 
 describe('email-formatting', () => {
