@@ -1,6 +1,6 @@
 # @mcp-z/email
 
-Docs: https://mcp-z.github.io/email Provider-agnostic email utilities for parsing, normalization, and query schemas.
+Email processing toolkit with base schemas, normalization utilities, and shared constants for Gmail/Outlook integration
 
 ## Common uses
 
@@ -24,6 +24,7 @@ import { parseAddresses, formatAddresses } from '@mcp-z/email';
 
 const parsed = parseAddresses('John Doe <john@example.com>, jane@example.com');
 const formatted = formatAddresses(parsed);
+console.log(formatted); // john@example.com, jane@example.com
 ```
 
 ### Base query fields
@@ -103,4 +104,10 @@ const content = buildContentForItems([{ id: '1', subject: 'Hello' }], 'emails');
 
 ## Requirements
 
-- Node.js >= 22
+- Node.js >= 16
+
+The package uses `zod` for its exported schemas. Install `zod` directly when your application imports it, as in the schema examples above: `npm install zod`.
+
+## Documentation
+
+[API Docs](https://mcp-z.github.io/email)
