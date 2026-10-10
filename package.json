@@ -74,9 +74,9 @@
     "@types/mocha": "^10.0.10",
     "@types/node": "^26.2.0",
     "node-version-use": "^2.4.7",
+    "portable-env": "^1.4.0",
     "ts-dev-stack": "^1.22.1",
-    "tsds-config": "^1.0.4",
-    "tsds-lib": "^1.22.6"
+    "tsds-config": "^1.0.4"
   },
   "engines": {
     "node": ">=16"
