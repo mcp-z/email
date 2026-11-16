@@ -60,10 +60,10 @@
     "lint": "biome check .",
     "prepublish:check": "ncp",
     "prepublishOnly": "node scripts/require-dist-tag.cjs && tsds validate",
-    "test": "tsds test:node --require test/lib/env-loader.ts --no-timeouts",
-    "test:ci": "tsds test:node --require test/lib/env-loader.ts --no-timeouts",
-    "test:ci:engines": "nvu engines tsds test:node --require test/lib/env-loader.ts --no-timeouts",
-    "test:engines": "nvu engines tsds test:node --require test/lib/env-loader.ts --no-timeouts",
+    "test": "tsds test:node --no-timeouts",
+    "test:ci": "tsds test:node --no-timeouts",
+    "test:ci:engines": "nvu engines tsds test:node --no-timeouts",
+    "test:engines": "nvu engines tsds test:node --no-timeouts",
     "version": "tsds version"
   },
   "dependencies": {

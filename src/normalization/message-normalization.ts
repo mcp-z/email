@@ -1,4 +1,4 @@
-import { parse as parseHtml } from 'node-html-parser';
+import { type HTMLElement, type Node, parse as parseHtml, TextNode } from 'node-html-parser';
 
 /**
  * Represents a parsed email address with optional display name
@@ -96,17 +96,36 @@ export function formatAddresses(addressArray: AddressToken[] | undefined | null,
     .join(', ');
 }
 
+/**
+ * Same text as `root.textContent`, walked with an explicit stack because the library's getters
+ * recurse per nesting level and overflow the call stack on deeply nested HTML.
+ *
+ * @param skipTag - lowercase tag name whose subtrees are left out
+ */
+function textOfTree(root: HTMLElement, skipTag?: string): string {
+  const parts: string[] = [];
+  const stack: Node[] = [root];
+  while (stack.length > 0) {
+    const node = stack.pop() as Node;
+    if (node.nodeType === 1) {
+      const element = node as HTMLElement;
+      if (skipTag && element !== root && element.rawTagName?.toLowerCase() === skipTag) continue;
+      if (/^br$/i.test(element.rawTagName ?? '')) {
+        parts.push('\n');
+        continue;
+      }
+      for (let i = element.childNodes.length - 1; i >= 0; i--) stack.push(element.childNodes[i]);
+    } else {
+      parts.push(node.rawText);
+    }
+  }
+  return new TextNode(parts.join(''), null).text;
+}
+
 export function stripHtml(html: string | number | null | undefined): string {
   if (html == null) return '';
-  try {
-    const root = parseHtml(String(html ?? ''));
-    // Check if root has the expected properties
-    const text = 'innerText' in root && typeof root.innerText === 'string' ? root.innerText : 'text' in root && typeof root.text === 'string' ? root.text : '';
-    return text.replace(/\r\n?/g, '\n').trim();
-  } catch (_) {
-    // If HTML parsing fails, return empty string rather than attempting fallback parsing
-    return '';
-  }
+  const text = textOfTree(parseHtml(String(html)));
+  return text.replace(/\r\n?/g, '\n').trim();
 }
 
 export function normalizeDateToISO(value: string | number | Date | null | undefined): string | null {
@@ -182,19 +201,9 @@ export function extractCurrentMessageFromText(text: string | null | undefined): 
 
 export function extractCurrentMessageFromHtmlToText(html: string | null | undefined): string {
   if (html == null) return '';
-  try {
-    const root = parseHtml(String(html));
-
-    // Remove quoted content using universal HTML semantic pattern
-    root.querySelectorAll('blockquote')?.forEach((el) => {
-      el?.remove();
-    });
-
-    const text = root.innerText || root.text || '';
-    return extractCurrentMessageFromText(text);
-  } catch (_) {
-    return extractCurrentMessageFromText(stripHtml(html));
-  }
+  // Quoted content is left out using the universal HTML semantic pattern
+  const text = textOfTree(parseHtml(String(html)), 'blockquote');
+  return extractCurrentMessageFromText(text);
 }
 
 /**

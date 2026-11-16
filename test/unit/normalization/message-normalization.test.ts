@@ -398,6 +398,11 @@ describe('message-normalization', () => {
   // ==========================================================================
 
   describe('stripHtml()', () => {
+    it('returns the text for 5000-deep nesting', () => {
+      const html = `${'<div>'.repeat(5000)}text${'</div>'.repeat(5000)}`;
+      assert.strictEqual(stripHtml(html), 'text');
+    });
+
     describe('simple HTML', () => {
       it('strips simple paragraph tags', () => {
         const result = stripHtml(HTML_SAMPLES.simpleParagraph);
@@ -611,6 +616,11 @@ describe('message-normalization', () => {
   });
 
   describe('extractCurrentMessageFromHtmlToText()', () => {
+    it('returns the text for 5000-deep nesting', () => {
+      const html = `${'<div>'.repeat(5000)}text${'</div>'.repeat(5000)}`;
+      assert.strictEqual(extractCurrentMessageFromHtmlToText(html), 'text');
+    });
+
     describe('blockquote removal', () => {
       it('removes single blockquote', () => {
         const result = extractCurrentMessageFromHtmlToText(HTML_SAMPLES.withBlockquote);

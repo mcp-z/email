@@ -363,6 +363,25 @@ describe('schema relationship', () => {
 // ============================================================================
 
 describe('createEmailRecipientsSchema()', () => {
+  for (const field of ['to', 'cc', 'bcc'] as const) {
+    it(`rejects a line break in ${field}`, () => {
+      const schema = createEmailRecipientsSchema(field, true);
+      assert.ok(!schema.safeParse('a@example.com\r\nBcc: e@example.com').success);
+      assert.ok(!schema.safeParse('a@example.com\nBcc: e@example.com').success);
+    });
+  }
+
+  it('rejects CRLF in a display name and DEL', () => {
+    const schema = createEmailRecipientsSchema();
+    assert.ok(!schema.safeParse('"Bob\r\nBcc: e@example.com" <b@example.com>').success);
+    assert.ok(!schema.safeParse('a@example.com\u007f').success);
+  });
+
+  it('accepts a tab and a non-ASCII display name', () => {
+    const schema = createEmailRecipientsSchema();
+    assert.strictEqual(schema.parse('José\t<j@example.com>'), 'José\t<j@example.com>');
+  });
+
   it('creates required schema for "to" field by default', () => {
     const schema = createEmailRecipientsSchema();
     const result = schema.safeParse(undefined);

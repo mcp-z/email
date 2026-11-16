@@ -9,6 +9,7 @@
  */
 
 import { z } from 'zod';
+import { headerText } from '../lib/header-text.ts';
 
 // ============================================================================
 // FIELD DEFINITIONS - Constants for field selection across Gmail and Outlook
@@ -107,7 +108,7 @@ export function createEmailRecipientsSchema(field: 'to' | 'cc' | 'bcc' = 'to', r
 
   const description = `${fieldLabels[field]}. For multiple recipients, use comma-separated: "alice@example.com, bob@example.com"`;
 
-  const schema = z.string().min(1).describe(description);
+  const schema = headerText(description).min(1);
 
   return required ? schema : schema.optional().describe(`${description} (optional)`);
 }

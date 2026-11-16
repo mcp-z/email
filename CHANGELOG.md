@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.5] - 2026-11-16
+
+### Added
+
+- `headerText(description)` (a string schema that rejects line breaks and other control characters, tab allowed), `sanitizeHeaderText(value)` (turns each run of such characters into one space) and `HEADER_UNSAFE` (the character set) are exported, so mail servers can keep text out of header lines.
+
+### Changed
+
+- `createEmailRecipientsSchema` (To, Cc, Bcc) now rejects values containing line breaks or other control characters, with an error naming the field and the rule. Previously such a value passed validation and could add extra header lines to the message.
+
+### Fixed
+
+- `stripHtml` and `extractCurrentMessageFromHtmlToText` returned an empty body for HTML nested thousands of elements deep; they now return its text.
+
 ## [1.1.1] - 2026-08-30
 
 Documentation and lockfile refresh only; the code is identical to 1.1.0.
