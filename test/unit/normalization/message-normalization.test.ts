@@ -682,6 +682,16 @@ describe('message-normalization', () => {
   });
 
   describe('extractCurrentMessageFromHtml()', () => {
+    it('keeps the markup for 5000-deep nesting', () => {
+      const html = `${'<div>'.repeat(5000)}text${'</div>'.repeat(5000)}`;
+      assert.strictEqual(extractCurrentMessageFromHtml(html), html);
+    });
+
+    it('removes a quote from 20000-deep nesting', () => {
+      const html = `${'<div>'.repeat(20000)}text<blockquote>old</blockquote>${'</div>'.repeat(20000)}`;
+      assert.strictEqual(extractCurrentMessageFromHtml(html), `${'<div>'.repeat(20000)}text${'</div>'.repeat(20000)}`);
+    });
+
     describe('Gmail patterns', () => {
       it('removes Gmail blockquote with .gmail_quote class', () => {
         const result = extractCurrentMessageFromHtml(REAL_EMAIL_HTML.gmailReplyChain);

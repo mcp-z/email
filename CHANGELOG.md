@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.6] - 2026-11-18
+
+### Fixed
+
+- `extractCurrentMessageFromHtml` kept the quoted history and returned the original HTML unchanged for HTML nested thousands of elements deep. It now removes the quotes. This needs `node-html-parser` 9.0.7 or later, which the dependency range now requires.
+
 ## [1.1.5] - 2026-11-16
 
 ### Added
